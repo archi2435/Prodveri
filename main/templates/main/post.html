@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="bg-light shadow-lg mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">{{ post.category }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+    </ol>
+</nav>
+
+<hr class="py-sm-2">
+
+
+<div class="card mb-3 bg-light shadow-lg" style="">
+    <div class="row g-0">
+      <div class="col-md-4 text-center py-4">
+        <img src="{{ post.image.url }}" alt="..." style="width: 200px;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title display-4">{{ post.title }}</h5>
+          <p class="card-text">{{ post.sub_name|linebreaks }}</p>
+        </div>
+       
+      </div>
+    </div>
+    <div class="card-footer text-right">
+        <h5 class="card-text"> Стоимость: {{ post.price }} RUB </h5>
+    </div>
+</div>
+{% endblock content %}

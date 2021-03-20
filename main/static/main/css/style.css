@@ -1,0 +1,12 @@
+.card-how:hover {
+    box-shadow: 0px 0 25px 0 rgba(0,0,0,0.5);
+    transform: translateY(-10px);
+}
+
+.card-how {
+    box-shadow: 0px 0 25px 0 rgba(0,0,0,0.2);
+}
+
+.navit:hover {
+    transform: translateX(-10px);
+}

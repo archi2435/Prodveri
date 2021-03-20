@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <H2 id="hello-md">Добро пожаловать в наш магазин</H2>
+    <h3 id="hello-sm">Добро пожаловать</h3>
+    <hr>
+    <p>У нас вы найдете широкий асортимет дверей и фурнитуры на любой вкус и под заказ</p>
+    <p>Наш адрес: <b>Российская 400/1</b><br>
+    Наш телефон:<b> +7 (800) 555 35 35</b></p>
+    <hr>
+    <h3 class="pb-3">Последние товары:</h3>
+    <div class="row row-cols-2 row-cols-lg-4 g-4 pb-2">
+    {% for i in catalog_mainpage %}
+        <div class="col my-3 ">
+            <div class="card card-how h-100">
+                <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                <h5 class="card-header text-center">{{ i.title }}</h5>
+                <div class="card-body text-center ">
+                    <img src="{{ i.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
+                    <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ i.text }}</h6>
+                    <hr>
+                    <h5 class="card-title pt-0 text-right d-none d-sm-block">{{ i.price }} RUB</h5>
+                    <h6 class="card-title pt-0 text-right d-block d-sm-none">{{ i.price }} RUB</h6>
+                </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <hr>
+    <h3 class="pb-3">Последняя фурнитура:</h3>
+    <div class="row row-cols-2 row-cols-lg-4 g-4">
+        {% for fur in furnite_mainpage %}
+            <div class="col my-3 ">
+                <div class="card card-how h-100">
+                    <a href="{{ fur.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                    <h5 class="card-header text-center">{{ fur.title }}</h5>
+                    <div class="card-body text-center ">
+                        <img src="{{ fur.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
+                        <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ fur.text }}</h6>
+                        <hr>
+                        <h5 class="card-title pt-0 text-right d-none d-sm-block">{{ fur.price }} RUB</h5>
+                        <h6 class="card-title pt-0 text-right d-block d-sm-none">{{ fur.price }} RUB</h6>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
