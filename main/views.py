@@ -27,6 +27,7 @@ def index(request):     #   main template / Домашняя страница
     catigories_navbar = category.objects.all
     furnite_navbar = Furnite_category.objects.all
     furnite_sub_category_navbar = Furnite_sub_category.objects.all
+    news = News.objects.order_by('-id')[:2]
 
     context = {
         'sub_category_navbar':sub_category_navbar,
@@ -35,6 +36,7 @@ def index(request):     #   main template / Домашняя страница
         'catigories_navbar':catigories_navbar,
         'furnite_navbar':furnite_navbar,
         'furnite_sub_category_navbar':furnite_sub_category_navbar,
+        'news':news,
     }
 
     return render(request, 'main/index.html', context=context)
@@ -113,7 +115,7 @@ def show_category(request, category_slug):      #   category list / Список
 
 
 
-def show_furnite_category(request, furnite_category_slug):
+def show_furnite_category(request, furnite_category_slug):      #   furnite category list / список товара одной категории (фурнитура)
 
     incategory = get_object_or_404(Furnite_category, slug=furnite_category_slug)
     furnite = Furnite.objects.order_by('-id')
@@ -135,6 +137,8 @@ def show_furnite_category(request, furnite_category_slug):
     }
 
     return render(request, 'main/furnite_category.html', context = context)
+
+
 
 
 def show_sub_category(request, sub_category_slug):      #   sub_category list / Список товара одной подкатегории (двери)

@@ -164,3 +164,18 @@ class Furnite(models.Model):        #   furnite catalog list / список фу
     class Meta:
         verbose_name = 'Фурнитура'
         verbose_name_plural = 'Фурнитура'
+
+
+
+
+class News(models.Model):       #   news tab / Новости
+
+    title = models.CharField(verbose_name='Загаловок', max_length=50)
+    text = models.TextField(verbose_name='Текст')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'

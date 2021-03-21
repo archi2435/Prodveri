@@ -2,20 +2,20 @@
 {% load static %}
 
 {% block content %}
-    <h3 class="display">{{ incategory.title }}:</h3>
-    <hr>
+    <h3 class="lead text-center pb-3" style="font-size: 2em;">{{ incategory.title }}</h3>
+
     <div class="row row-cols-2 row-cols-lg-4 g-4">
         {% for i in furnite %}
         {% if incategory.id == i.category_id %}
             <div class="col my-3 ">
                 <div class="card card-how h-100">
                     <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
-                    <h5 class="card-header text-center">{{ i.title }}</h5>
+                    <h5 class="card-header text-center lead"><b>{{ i.title }}</b></h5>
                     <div class="card-body text-center ">
                         <img src="{{ i.image.url }}" class="card-img-top  pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
                         <h6 class="card-subtitle text-muted my-1">{{ i.text }}</h6>
                         <hr>
-                        <h5 class="card-title pt-0 text-right">{{ i.price }} RUB</h5>
+                        <h5 class="card-title pt-0 text-right lead">{{ i.price }} RUB</h5>
                     </div>
                     </a>
                 </div>

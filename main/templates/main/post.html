@@ -1,6 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+<!-- nav block / блок навигации -->
 {% block content %}
 <nav aria-label="breadcrumb" class="bg-light shadow-lg mb-4">
     <ol class="breadcrumb">
@@ -11,8 +12,8 @@
 
 <hr class="py-sm-2">
 
-
-<div class="card mb-3 bg-light shadow-lg" style="">
+<!-- post block / блок поста -->
+<div class="card mb-3 bg-light shadow-lg">
     <div class="row g-0">
       <div class="col-md-4 text-center py-4">
         <img src="{{ post.image.url }}" alt="..." style="width: 200px;">
@@ -26,7 +27,7 @@
       </div>
     </div>
     <div class="card-footer text-right">
-        <h5 class="card-text"> Стоимость: {{ post.price }} RUB </h5>
+        <h5 class="card-text lead"> Стоимость: {{ post.price }} ₽ </h5>
     </div>
 </div>
 {% endblock content %}
