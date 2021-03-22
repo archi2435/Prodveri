@@ -50,7 +50,8 @@ class catalog(models.Model):        #   catalog list / список товара
     title = models.CharField(verbose_name='Название', max_length=100)
     slug = models.SlugField(unique=True)
     price = models.CharField(verbose_name='Цена', max_length=20)
-    image = models.ImageField()
+    image = models.ImageField(verbose_name='Основное фото')
+    second_image = models.ImageField(verbose_name='доп фото', blank=True)
     sub_name = models.TextField(verbose_name='Описание / назваие коллекции')
 
     def __str__(self):

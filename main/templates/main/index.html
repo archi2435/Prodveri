@@ -41,7 +41,7 @@
     <hr>
     <div class="container d-md-flex py-4 text-center">
         <i class="bi bi-window-sidebar mr-3" style="font-size: 2.3em;"></i>
-        <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного пройёма,
+        <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного пройома,
             доставке товара до адреса и монтажным работам</p>
     </div>
 
@@ -49,18 +49,22 @@
     <!-- new door block / блок с новыми дверьми -->
     <hr>
     <h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Новинки</b></h3>
-    <div class="row row-cols-2 row-cols-lg-4 g-4 pb-2 pb-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 pb-4">
     {% for i in catalog_mainpage %}
-        <div class="col my-3 ">
-            <div class="card card-how h-100">
+        <div class=" col g-0 my-3">
+            <div class="card card-how h-100"> 
                 <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
                 <h5 class="card-header lead text-center"><b>{{ i.title }}</b></h5>
-                <div class="card-body text-center ">
-                    <img src="{{ i.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
-                    <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ i.text }}</h6>
+                <div class="card-body text-center">
+                    <div class="card__img">
+                        <img src="{{ i.image.url }}" class=" card__img-wrapper">
+                        {% if i.second_image  %}
+                        <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
+                        {% endif %}
+                    </div>
                     <hr>
-                    <h5 class="card-title pt-0 text-right d-none d-sm-block lead">{{ i.price }} ₽</h5>
-                    <h6 class="card-title pt-0 text-right d-block d-sm-none lead">{{ i.price }} ₽</h6>
+                    <h5 class="card-text pt-0 text-right d-none d-sm-block lead">{{ i.price }} ₽</h5>
+                    <h6 class="card-text pt-0 text-right d-block d-sm-none lead">{{ i.price }} ₽</h6>
                 </div>
                 </a>
             </div>

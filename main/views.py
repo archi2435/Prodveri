@@ -34,8 +34,6 @@ def index(request):     #   main template / Домашняя страница
         'catalog_mainpage':catalog_mainpage,
         'furnite_mainpage':furnite_mainpage,
         'catigories_navbar':catigories_navbar,
-        'furnite_navbar':furnite_navbar,
-        'furnite_sub_category_navbar':furnite_sub_category_navbar,
         'news':news,
     }
 
@@ -179,3 +177,25 @@ def show_furnite_sub_category(request, sub_category_slug):
     }
 
     return render(request, 'main/subcategory.html', context = context)
+
+
+
+
+def all_furnite(request):
+
+    sub_category_navbar = sub_category.objects.all
+    furnite_allpage = Furnite.objects.order_by('-id')[:4]
+    catigories_navbar = category.objects.all
+    furnite_navbar = Furnite_category.objects.all
+    furnite_sub_category_navbar = Furnite_sub_category.objects.all
+
+
+    context = {
+        'sub_category_navbar':sub_category_navbar,
+        'furnite_allpage':furnite_allpage,
+        'catigories_navbar':catigories_navbar,
+        'furnite_navbar':furnite_navbar,
+        'furnite_sub_category_navbar':furnite_sub_category_navbar
+    }
+
+    return render(request, 'main/all_furnite.html', context = context)

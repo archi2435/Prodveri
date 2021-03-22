@@ -35,9 +35,8 @@
       {% endfor %}
         <!--<li class="nav-item"><hr></li>-->
       
-      <li class="nav-item dropdown pl-1">
-          <a class="nav-link lead dropdown-toggle" data-toggle="dropdown" aria-current="page" href="#"><b>фурнитура</b></a>
-          <ul class="dropdown-menu navmenu-nav" role="menu">
+      <li class="nav-item  pl-1"><a class="nav-link lead "  aria-current="page" href="{% url 'all_furnite' %}"><b>Фурнитура</b></a></li>
+          
             {% for fu in furnite_navbar %}
             <li class="nav-item lead pl-3 "><a class="nav-link"  href="{{ fu.get_absolute_url }}">{{ fu.title }}</a></li>
             <!--  
@@ -91,7 +90,7 @@
     .navmenu {width: 250px;}
 
     /* md и выше */
-    @media screen and (min-width: 1200px){      #wrapper {padding-left: 250px; padding-top: 10em}    }
+    @media screen and (min-width: 1200px){      #wrapper {padding-left: 250px; padding-top: 10em}   }
 
     /* md и ниже */
     @media screen and (max-width: 1199px){      #wrapper {padding-top: 7em;}    }
@@ -99,6 +98,28 @@
     /* Приветственная надпись на разных устройствах */
     @media screen and (max-width: 991px) {      #hello-md {display: none;}    }
     @media screen and (min-width: 992px) {      #hello-sm {display: none;}    }
+
+    .card__img {
+    position: relative;
+    width: 100%;
+    max-height: 200px;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .card__img-wrapper {
+    max-width: 100%;
+    height: 12em;
+    position: relative;
+    }
+
+    .card {
+      margin-right: 0px;
+    }
 
   </style>
   
