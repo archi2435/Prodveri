@@ -11,6 +11,15 @@
     transform: translateX(-10px);
 }
 
+.card-how-low:hover {
+    box-shadow: 0px 0 25px 0 rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+}
+
+.card-how-low {
+    box-shadow: 0px 0 25px 0 rgba(0,0,0,0.2);
+}
+
 .card__img {
     position: relative;
     width: 100%;

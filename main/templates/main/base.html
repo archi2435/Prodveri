@@ -30,16 +30,16 @@
       </div>
 
       {% for el in catigories_navbar %}
-        <li class="nav-item  pl-1"><a class="nav-link lead" href="{{ el.get_absolute_url }}"><b>{{ el.title }}</b></a></li>
+        <li class="nav-item  pl-1 navit"><a class="nav-link lead" href="{{ el.get_absolute_url }}"><b>{{ el.title }}</b></a></li>
         {% block sub_catigories %}{%endblock%}
       {% endfor %}
         <!--<li class="nav-item"><hr></li>-->
       
-      <li class="nav-item  pl-1"><a class="nav-link lead "  aria-current="page" href="{% url 'all_furnite' %}"><b>Фурнитура</b></a></li>
+      <li class="nav-item pl-1 navit"><a class="nav-link lead"  aria-current="page" href="{% url 'all_furnite' %}"><b>Фурнитура</b></a></li>
           
             {% for fu in furnite_navbar %}
-            <li class="nav-item lead pl-3 "><a class="nav-link"  href="{{ fu.get_absolute_url }}">{{ fu.title }}</a></li>
-            <!--  
+            <li class="nav-item lead pl-3 navit"><a class="nav-link"  href="{{ fu.get_absolute_url }}">{{ fu.title }}</a></li>
+            <!--  11
             {% for fu_sub in furnite_sub_category_navbar %}
                 {% if fu.id == fu_sub.category_id %}
                     <li class="nav-item pl-4 "><a class="nav-link " href="#">{{fu_sub.title}}</a></li>

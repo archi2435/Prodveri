@@ -43,15 +43,37 @@ class sub_category(models.Model):       #   sub_category list / таб подк�
 
 
 
+class collection(models.Model):      #   collection list / список коллекций
+
+    category = models.ForeignKey(category, verbose_name='Категория', on_delete=models.CASCADE)
+    sub_category = models.ForeignKey(sub_category, verbose_name="Подкатегория", on_delete=models.CASCADE)
+    title = models.CharField(verbose_name='Название коллекции', max_length=100) 
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("collection", kwargs={"collection_slug": self.slug})
+
+    class Meta:
+        verbose_name = 'Коллекция'
+        verbose_name_plural = 'Коллекции'
+    
+    
+
+
 class catalog(models.Model):        #   catalog list / список товара
 
     category = models.ForeignKey(category, verbose_name='Категория', on_delete=models.CASCADE)
     sub_category = models.ForeignKey(sub_category, verbose_name="Подкатегория", on_delete=models.CASCADE, null=True, blank=True)
+    collection = models.ForeignKey(collection, verbose_name="Коллекция", on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(verbose_name='Название', max_length=100)
     slug = models.SlugField(unique=True)
     price = models.CharField(verbose_name='Цена', max_length=20)
+    discond = models.CharField(verbose_name='Цена со скидкой (необязательно)', blank=True, max_length=20)
     image = models.ImageField(verbose_name='Основное фото')
-    second_image = models.ImageField(verbose_name='доп фото', blank=True)
+    second_image = models.ImageField(verbose_name='доп фото (необязательно)', blank=True)
     sub_name = models.TextField(verbose_name='Описание / назваие коллекции')
 
     def __str__(self):
@@ -63,44 +85,6 @@ class catalog(models.Model):        #   catalog list / список товара
     class Meta:
         verbose_name = 'Каталог'
         verbose_name_plural = 'Каталог'
-
-
-
-
-class CartProduct(models.Model):        #   product in cart / товар для корзины
-
-    user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE)
-    cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.CASCADE)
-    product = models.ForeignKey(catalog, verbose_name='Товар', on_delete=models.CASCADE, related_name='related_products')
-    qty = models.PositiveIntegerField(default=1)
-    sum_price = models.DecimalField(verbose_name='Общая цена', max_digits=15, decimal_places=2)
-
-    def __str__(self):
-        return "Продукт: {} (для корзины)".format(self.product.title)
-
-
-
-
-class cart(models.Model):       #   cart tab / таб корзины
-
-    owner = models.ForeignKey('Customer', verbose_name='Владелец', on_delete=models.CASCADE)
-    products = models.ManyToManyField(CartProduct, blank=True, related_name='related_cart')
-    total_products = models.PositiveIntegerField(default=0)
-    sum_price = models.DecimalField(verbose_name='Общая цена', max_digits=15, decimal_places=2)
-
-    def __str__(self):
-        return str(self.id)
-
-
-
-
-class Customer(models.Model):       #   custom user tab / таб пользователя
-
-    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
-    phone = models.CharField(verbose_name='Номер телефона', max_length=15)
-
-    def __str__(self):
-        return "Покупатель {}".format(self.user.first_name)
 
 
 
