@@ -53,7 +53,7 @@
     {% for i in catalog_mainpage %}
         <div class=" col g-0 my-3">
             <div class="card card-how h-100"> 
-                <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
                 <h5 class="card-header lead text-center"><b>{{ i.title }}</b></h5>
                 <div class="card-body text-center">
                     
@@ -83,7 +83,7 @@
         {% for fur in furnite_mainpage %}
             <div class="col my-3 ">
                 <div class="card card-how h-100">
-                    <a href="{{ fur.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                    <a class="text-decoration-none" href="{{ fur.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
                     <h5 class="card-header text-center lead"><b>{{ fur.title }}</b></h5>
                     <div class="card-body text-center ">
                         <img src="{{ fur.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">

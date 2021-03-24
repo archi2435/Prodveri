@@ -2,13 +2,21 @@
 {% load static %}
 
 {% block content %}
-    <h3 class="lead text-center pb-3" style="font-size: 2em;">Фурнитура</h3>
+    <h3 class="lead text-center pb-5" style="font-size: 2em;">Фурнитура</h3>
+
+    <nav class="nav nav-pills justify-content-center pb-3">
+        {% for es in furnite_navbar %}
+            <li class="nav-item border rounded card-how-low px-2 m-1">
+                <a class="nav-link text-pimary lead" aria-current="page" href="{{ es.get_absolute_url }}"><b>{{ es.title }}</b></a>
+            </li>
+        {% endfor %}
+    </nav>
 
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
         {% for i in furnite_allpage %}
             <div class="col my-3 ">
                 <div class="card card-how h-100">
-                    <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                    <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
                     <h5 class="card-header text-center lead"><b>{{ i.title }}</b></h5>
                     <div class="card-body text-center ">
                         <img src="{{ i.image.url }}" class="card-img-top  pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">

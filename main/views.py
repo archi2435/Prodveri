@@ -145,6 +145,7 @@ def show_sub_category(request, sub_category_slug):      #   sub_category list / 
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
     subcategory_catalog = catalog.objects.order_by('-id')
+    collections = collection.objects.all
     
 
     context = {
@@ -152,6 +153,7 @@ def show_sub_category(request, sub_category_slug):      #   sub_category list / 
         'catigories_navbar' : catigories_navbar,
         'sub_category_navbar' : sub_category_navbar,
         'subcategory_catalog' : subcategory_catalog,
+        'collections' : collections,
     }
 
     return render(request, 'main/subcategory.html', context = context)

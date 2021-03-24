@@ -3,9 +3,16 @@
 
 <!-- nav block / блок навигации -->
 {% block content %}
-<nav aria-label="breadcrumb" class="bg-light shadow-lg mb-4">
+<nav aria-label="breadcrumb" class="bg-light mb-4 card-how-low rounded">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">{{ post.category }}</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+      <li class="breadcrumb-item"><a href="{{post.category.get_absolute_url}}">{{ post.category }}</a></li>
+      {% if post.sub_category %}
+      <li class="breadcrumb-item"><a href="{{post.sub_category.get_absolute_url}}">{{ post.sub_category }}</a></li>
+      {% endif %}
+      {% if post.collection %}
+      <li class="breadcrumb-item"><a href="{{post.sub_category.get_absolute_url}}">{{ post.collection }}</a></li>
+      {% endif %}
       <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
     </ol>
 </nav>
@@ -13,7 +20,7 @@
 <hr class="py-sm-2">
 
 <!-- post block / блок поста -->
-<div class="card mb-3 bg-light shadow-lg">
+<div class="card mb-3 bg-light card-how mb-4">
     <div class="row g-0">
       <div class="col-md-4 text-center py-4">
         <img src="{{ post.image.url }}" alt="..." style="width: 200px;">
@@ -30,4 +37,38 @@
         <h5 class="card-text lead"> Стоимость: {{ post.price }} ₽ </h5>
     </div>
 </div>
+
+{% if post.collection != Null and post.collection != '' %}
+<hr>
+<h3 class="py-3 lead text-center" style="font-size: 2em;"><b>Коллекция "{{ post.collection }}"</b></h3>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 pb-4">
+{% for i in catalog_post %}
+{% if i.collection == post.collection %}
+
+    <div class=" col g-0 my-3">
+        <div class="card card-how h-100"> 
+            <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+            <h5 class="card-header lead text-center"><b>{{ i.title }}</b></h5>
+            <div class="card-body text-center">
+                
+                <div class="card__img">
+                    <img src="{{ i.image.url }}" class=" card__img-wrapper">
+                    {% if i.second_image  %}
+                    <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="">
+                        <h5 class="card-text pt-0 text-right d-none d-sm-block lead">{{ i.price }} ₽</h5>
+                        <h6 class="card-text pt-0 text-right d-block d-sm-none lead">{{ i.price }} ₽</h6>
+                </div>
+            </div>
+            </a>
+        </div>
+    </div>
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+
 {% endblock content %}

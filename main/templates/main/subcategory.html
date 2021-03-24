@@ -6,7 +6,7 @@
     {% for es in sub_category_navbar %}
         {% if el.id == es.category_id %}
             {% if el.id == subcategory.category_id %}
-            <li class="nav-item pl-3 lead"><a class="nav-link " href="{{ es.get_absolute_url }}">{{es.name}}</a></li>
+            <li class="nav-item pl-3 lead navit"><a class="nav-link " href="{{ es.get_absolute_url }}">{{es.name}}</a></li>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -15,13 +15,23 @@
 
 {% block content %}
     <h5 class="lead text-center pb-5" style="font-size: 2em;">{{ subcategory.name }}</h5>
+
+    <nav class="nav nav-pills justify-content-center pb-3">
+        {% for es in collections %}
+        {% if es.sub_category_id == subcategory.id %}
+            <li class="nav-item border rounded card-how-low px-2 m-1">
+                <a class="nav-link text-pimary lead" aria-current="page" href="#"><b>{{ es.title }}</b></a>
+            </li>
+        {% endif %}
+        {% endfor %}
+    </nav>
     
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 pb-4">
         {% for i in subcategory_catalog %}
         {% if subcategory.id == i.sub_category_id %}
             <div class="col my-3 ">
                 <div class="card card-how h-100">
-                    <a href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                    <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
                     <h5 class="card-header text-center lead"><b>{{ i.title }}</b></h5>
                     <div class="card-body text-center ">
                         <div class="card__img">

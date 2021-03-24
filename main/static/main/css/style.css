@@ -1,14 +1,27 @@
 .card-how:hover {
     box-shadow: 0px 0 25px 0 rgba(0,0,0,0.5);
-    transform: translateY(-10px);
+    transform: translateY(-8px);
 }
 
 .card-how {
     box-shadow: 0px 0 25px 0 rgba(0,0,0,0.2);
+    transition: all 0.2s;
 }
 
 .navit:hover {
     transform: translateX(-10px);
+}
+
+.navit {
+    transition: all 0.2s;
+}
+
+.navit-down:hover {
+    transform:translateY(2px)
+}
+
+.navit-down {
+    transition: all 0.2s;
 }
 
 .card-how-low:hover {
@@ -18,22 +31,31 @@
 
 .card-how-low {
     box-shadow: 0px 0 25px 0 rgba(0,0,0,0.2);
+    transition: all 0.2s;
+}
+
+.card-how-scale{
+    transition: all 0.2s;
+}
+
+.card-how-scale {
+    transform: translateY(10px);
 }
 
 .card__img {
     position: relative;
     width: 100%;
-    height: 220px;
-    margin-bottom: 30px;
+    max-height: 200px;
     text-align: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    }
 
 .card__img-wrapper {
-    max-width: 80%;
+    max-width: 100%;
+    height: 12em;
     position: relative;
-}
+    }
