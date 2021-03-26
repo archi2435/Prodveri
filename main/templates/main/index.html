@@ -41,7 +41,7 @@
     <hr>
     <div class="container d-md-flex py-4 text-center">
         <i class="bi bi-window-sidebar mr-3" style="font-size: 2.3em;"></i>
-        <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного пройома,
+        <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного проёма,
             доставке товара до адреса и монтажным работам</p>
     </div>
 
@@ -63,11 +63,7 @@
                         <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
                         {% endif %}
                     </div>
-                    <hr>
-                    <div class="">
-                            <h5 class="card-text pt-0 text-right d-none d-sm-block lead">{{ i.price }} ₽</h5>
-                            <h6 class="card-text pt-0 text-right d-block d-sm-none lead">{{ i.price }} ₽</h6>
-                    </div>
+                    <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price }} ₽</b></h5>
                 </div>
                 </a>
             </div>
@@ -88,9 +84,7 @@
                     <div class="card-body text-center ">
                         <img src="{{ fur.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
                         <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ fur.text }}</h6>
-                        <hr>
-                        <h5 class="card-title pt-0 text-right d-none d-sm-block lead">{{ fur.price }} ₽</h5>
-                        <h6 class="card-title pt-0 text-right d-block d-sm-none lead">{{ fur.price }} ₽</h6>
+                        <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ fur.price }} ₽</b></h5>
                     </div>
                     </a>
                 </div>

@@ -6,7 +6,7 @@
     {% for es in sub_category_navbar %}
         {% if el.id == es.category_id %}
             {% if el.id == incategory.id %}
-            <li class="nav-item pl-3 lead navit"><a class="nav-link" href="{{ es.get_absolute_url }}">{{es.name}}</a></li>
+            <li class="nav-item pl-3 lead navit"><a class="nav-link" href="{{ es.get_absolute_url }}">{{es.title}}</a></li>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -15,14 +15,21 @@
 
 {% block content %}
 
+    <!-- nav block / блок навигации -->
+    <nav aria-label="breadcrumb" class="bg-light mb-5 card-how-low rounded">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ incategory.title }}</li>
+    </ol>
+    </nav>
+
+
     <h1 class="lead text-center pb-5" style="font-size: 2em;">{{ incategory.title }}</h1>
-
-
     <nav class="nav nav-pills justify-content-center pb-3">
         {% for es in sub_category_navbar %}
         {% if incategory.id == es.category_id %}
             <li class="nav-item border rounded card-how-low px-2 m-1">
-                <a class="nav-link text-pimary lead"aria-current="page" href="{{ es.get_absolute_url }}"><b>{{ es.name }}</b></a>
+                <a class="nav-link text-pimary lead"aria-current="page" href="{{ es.get_absolute_url }}"><b>{{ es.title }}</b></a>
             </li>
         {% endif %}
         {% endfor %}
@@ -44,14 +51,31 @@
                             <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
                             {% endif %}
                         </div>
-                        <h6 class="card-subtitle text-muted my-1">{{ i.text }}</h6>
-                        <hr>
-                        <h5 class="card-title pt-0 text-right lead">{{ i.price }} ₽</h5>
+                        <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price }} ₽</b></h5>
+                        
                     </div>
+                    
                     </a>
                 </div>
             </div>
         {% endif %}
         {% endfor %}
     </div>
+
+
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+        </ul>
+    </nav>
 {% endblock content %}

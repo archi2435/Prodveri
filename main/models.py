@@ -27,11 +27,11 @@ class category(models.Model):       #   category table / таб категори
 class sub_category(models.Model):       #   sub_category list / таб подкатегорий
 
     category = models.ForeignKey(category, verbose_name='Категория', on_delete=models.CASCADE)
-    name = models.CharField(verbose_name='Подкатегория', max_length=100)
+    title = models.CharField(verbose_name='Подкатегория', max_length=100)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def get_absolute_url(self):
         return reverse("sub_category", kwargs={"sub_category_slug": self.slug})
@@ -71,7 +71,7 @@ class catalog(models.Model):        #   catalog list / список товара
     title = models.CharField(verbose_name='Название', max_length=100)
     slug = models.SlugField(unique=True)
     price = models.CharField(verbose_name='Цена', max_length=20)
-    discond = models.CharField(verbose_name='Цена со скидкой (необязательно)', blank=True, max_length=20)
+    max_price = models.CharField(verbose_name='Цена за комплект (необязательно)', max_length=20, blank=True)
     image = models.ImageField(verbose_name='Основное фото')
     second_image = models.ImageField(verbose_name='доп фото (необязательно)', blank=True)
     sub_name = models.TextField(verbose_name='Описание / назваие коллекции')

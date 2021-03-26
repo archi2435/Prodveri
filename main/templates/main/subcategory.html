@@ -6,7 +6,7 @@
     {% for es in sub_category_navbar %}
         {% if el.id == es.category_id %}
             {% if el.id == subcategory.category_id %}
-            <li class="nav-item pl-3 lead navit"><a class="nav-link " href="{{ es.get_absolute_url }}">{{es.name}}</a></li>
+            <li class="nav-item pl-3 lead navit"><a class="nav-link " href="{{ es.get_absolute_url }}">{{es.title}}</a></li>
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -14,7 +14,18 @@
 {% endblock %}
 
 {% block content %}
-    <h5 class="lead text-center pb-5" style="font-size: 2em;">{{ subcategory.name }}</h5>
+
+    <!-- nav block / блок навигации -->
+    <nav aria-label="breadcrumb" class="bg-light mb-5 card-how-low rounded">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+        <li class="breadcrumb-item" aria-current="page"><a href="{{ subcategory.category.get_absolute_url }}">{{ subcategory.category.title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ subcategory.title }}</li>
+    </ol>
+    </nav>
+
+
+    <h5 class="lead text-center pb-5" style="font-size: 2em;">{{ subcategory.title }}</h5>
 
     <nav class="nav nav-pills justify-content-center pb-3">
         {% for es in collections %}
@@ -39,10 +50,8 @@
                             {% if i.second_image %}
                             <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
                             {% endif %}
-                        </div>
-                        <h6 class="card-subtitle text-muted my-1">{{ i.text }}</h6>
-                        <hr>
-                        <h5 class="card-title pt-0 text-right lead">{{ i.price }} ₽</h5>
+                        </div>                       
+                        <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price }} ₽</b></h5>
                     </div>
                     </a>
                 </div>

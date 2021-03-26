@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<nav aria-label="breadcrumb" class="bg-light mb-4 card-how-low  rounded">
+<nav aria-label="breadcrumb" class="bg-light mb-5 card-how-low  rounded">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'home' %}">{{ furnite.category }}</a></li>
       <li class="breadcrumb-item"><a href="{% url 'all_furnite' %}">{{ furnite.category }}</a></li>
@@ -35,8 +35,8 @@
 
 
 <hr>
-<h3 class="py-3 lead text-center" style="font-size: 2em;"><b>Коллекция "{{ furnite.sub_category }}"</b></h3>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 pb-4">
+<h3 class="py-3 lead text-center" style="font-size: 2em;"><b>Категория "{{ furnite.sub_category }}"</b></h3>
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
   {% for i in furnite_post %}
     {% if i.sub_category == furnite.sub_category %}
 
