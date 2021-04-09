@@ -16,9 +16,9 @@
   </head>
   <body>
 
-  <nav id="myNavmenu" class="navmenu navmenu-default offcanvas-md navmenu-fixed-left " role="navigation">
-    <a class="navmenu-brand mt-3 text-center" href="{% url 'home' %}" style="font-size: 39px;">PRO.ДВЕРИ</a>
-  
+  <nav id="myNavmenu" class="navmenu navmenu-default offcanvas-md navmenu-fixed-left navslide" role="navigation">
+    <a href="{% url 'home' %}" class="ml-4"><img src="{% static 'main/img/logo.png' %}" class="mt-4 pl-3 sidelogo" style="height: 6em;" alt=""></a>
+
     <ul class="nav navmenu-nav flex-column mt-3">
  
       <li class="nav-item lead d-sm-block d-md-none pl-1 navit"><a class="nav-link" href="{% url 'home' %}"><b>Главная</b></a></li>
@@ -81,7 +81,7 @@
   </header>
 
 
-  <div class="container" id="wrapper">
+  <div class="container" id="wrapper" style="">
     {% block content %}{% endblock %}
   </div>
 
@@ -98,6 +98,7 @@
     /* Приветственная надпись на разных устройствах */
     @media screen and (max-width: 991px) {      #hello-md {display: none;}    }
     @media screen and (min-width: 992px) {      #hello-sm {display: none;}    }
+
 
     .card__img {
     position: relative;
@@ -120,6 +121,8 @@
     .card {
       margin-right: 0px;
     }
+
+    
 
   </style>
   
