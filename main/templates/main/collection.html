@@ -20,8 +20,8 @@
 
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 pb-4">
-        {% for i in collections_catalog %}
-        {% if incollections.id == i.collection_id %}
+        {% for i in page_obj %}
+        
             <div class="col my-3 ">
                 <div class="card card-how h-100">
                     <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
@@ -40,24 +40,10 @@
                     </a>
                 </div>
             </div>
-        {% endif %}
+        
         {% endfor %}
     </div>
 
 
-    <nav aria-label="Page navigation example ">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-        </ul>
-    </nav>
+    {% include "main/pagination.html"%}
 {% endblock content %}

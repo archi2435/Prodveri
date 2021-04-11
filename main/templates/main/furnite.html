@@ -23,8 +23,8 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title display-4">{{ furnite.title }}</h5>
-          <div class="pt-sm-5 mt-sm-5" >
-            <button type="button" class="btn btn-lg btn-outline-primary mt-sm-5 mb-3  w-100">
+          <div class="" >
+            <button type="button" class="btn btn-lg btn-outline-primary mt-2 mb-3  w-100">
               <h4 class="lead" style="font-size: 1.5em;">Стоимость</h4>
               <h4 class="lead" style="font-size: 1.4em;">{{ furnite.price }} ₽</h4>
             </button>
@@ -40,9 +40,7 @@
     <div class="card-body">
       <p class="card-text">{{ furnite.dist|linebreaks }}</p>
     </div>
-    <div class="card-footer text-right">
-        <h5 class="card-text"> Стоимость: {{ furnite.price }} RUB </h5>
-    </div>
+    
 </div>
 
 
@@ -59,8 +57,7 @@
               <div class="card-body text-center ">
                   <img src="{{ i.image.url }}" class="card-img-top  pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
                   <h6 class="card-subtitle text-muted my-1">{{ i.text }}</h6>
-                  <hr>
-                  <h5 class="card-title pt-0 text-right lead">{{ i.price }} RUB</h5>
+                  <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price }} ₽</b></h5>
               </div>
               </a>
           </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -112,11 +113,17 @@ def show_furnite(request, furnite_slug):        #   furnite post template / Ст
 def show_category(request, category_slug):      #   category list / Список товара одной категории (двери)
 
     incategory = get_object_or_404(category, slug=category_slug)
-    category_catalog = catalog.objects.order_by('-id')
+    category_catalog = catalog.objects.filter(category_id = incategory.id).order_by('-id')
+
+    paginator = Paginator(category_catalog, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
 
     context = {
+        'page_obj' : page_obj,
         'incategory' : incategory,
         'category_catalog' : category_catalog,
         'catigories_navbar' : catigories_navbar,
@@ -127,19 +134,22 @@ def show_category(request, category_slug):      #   category list / Список
 
 
 
-
 def show_furnite_category(request, furnite_category_slug):      #   furnite category list / список товара одной категории (фурнитура)
 
     incategory = get_object_or_404(Furnite_category, slug=furnite_category_slug)
-    furnite = Furnite.objects.order_by('-id')
+    furnite = Furnite.objects.filter(category_id = incategory.id)
     category_catalog = catalog.objects.order_by('-id')
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
     furnite_navbar = Furnite_category.objects.all
     furnite_sub_category_navbar = Furnite_sub_category.objects.all
-    
+
+    paginator = Paginator(furnite, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)    
 
     context = {
+        'page_obj' : page_obj,
         'incategory' : incategory,
         'furnite' : furnite,
         'category_catalog' : category_catalog,
@@ -159,11 +169,15 @@ def show_sub_category(request, sub_category_slug):      #   sub_category list / 
     subcategory = get_object_or_404(sub_category, slug=sub_category_slug)
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
-    subcategory_catalog = catalog.objects.order_by('-id')
+    subcategory_catalog = catalog.objects.filter(sub_category_id = subcategory.id)
     collections = collection.objects.all
     
+    paginator = Paginator(subcategory_catalog, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
+        'page_obj' : page_obj,
         'subcategory' : subcategory,
         'catigories_navbar' : catigories_navbar,
         'sub_category_navbar' : sub_category_navbar,
@@ -181,10 +195,16 @@ def show_collection(request, collection_slug):
     subcategory = sub_category.objects.all
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
-    collections_catalog = catalog.objects.order_by('-id')
     collections = collection.objects.all
+    collections_catalog = catalog.objects.filter(collection_id = incollections.id)
+    
+
+    paginator = Paginator(collections_catalog, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
+        'page_obj' : page_obj,
         'incollections' : incollections,
         'subcategory' : subcategory,
         'catigories_navbar' : catigories_navbar,
@@ -200,13 +220,17 @@ def show_collection(request, collection_slug):
 def show_furnite_sub_category(request, sub_category_slug):
 
     subcategory = get_object_or_404(Furnite_sub_category, slug=sub_category_slug)
-    furnite = Furnite.objects.order_by('-id')
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
     subcategory_catalog = catalog.objects.order_by('-id')
+    furnite = Furnite.objects.filter(sub_category_id = subcategory.id)
     
+    paginator = Paginator(Furnite, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
+        'page_obj' : page_obj,
         'subcategory' : subcategory,
         'catigories_navbar' : catigories_navbar,
         'sub_category_navbar' : sub_category_navbar,
@@ -222,13 +246,17 @@ def show_furnite_sub_category(request, sub_category_slug):
 def all_furnite(request):
 
     sub_category_navbar = sub_category.objects.all
-    furnite_allpage = Furnite.objects.order_by('-id')[:4]
+    furnite_allpage = Furnite.objects.order_by('-id')
     catigories_navbar = category.objects.all
     furnite_navbar = Furnite_category.objects.all
     furnite_sub_category_navbar = Furnite_sub_category.objects.all
 
+    paginator = Paginator(furnite_allpage, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
+        'page_obj' : page_obj,
         'sub_category_navbar':sub_category_navbar,
         'furnite_allpage':furnite_allpage,
         'catigories_navbar':catigories_navbar,
