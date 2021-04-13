@@ -17,35 +17,44 @@
   <body>
 
   <nav id="myNavmenu" class="pd-5 navmenu navmenu-default offcanvas-md navmenu-fixed-left navslide" role="navigation">
-    <a href="{% url 'home' %}" class="ml-4"><img src="{% static 'main/img/logo.png' %}" class="mt-4 pl-4 sidelogo" style="height: 6em;" alt=""></a>
-
+    <div class="container text-center">
+      <a href="{% url 'home' %}" class=""><img src="{% static 'main/img/logo.png' %}" class="mt-4 sidelogo" style="height: 6em;" alt=""></a>
+    </div>
     <ul class="nav navmenu-nav flex-column mt-3">
  
       <li class="nav-item lead d-sm-block d-md-none pl-1 navit"><a class="nav-link" href="{% url 'home' %}"><b>Главная</b></a></li>
       <li class="nav-item lead d-sm-block d-md-none pl-1 navit"><a class="nav-link" href="{% url 'home' %}"><b>Новости</b></a></li>
       <li class="nav-item lead d-sm-block d-md-none pl-1 navit"><a class="nav-link" href="{% url 'sizes' %}"><b>Снять замеры</b></a></li>
 
-      <div class="container text-center">
+      <div class="container text-center mt-3">
         <div class="btn-group w-100 socialcard rounded btn-group-lg" role="group" aria-label="Basic example">
-          <button type="button" class="btn pb-3 btn-primary">
+          <button type="button" class="btn pb-3 btn-light">
             <i class="bi bi-instagram" style="font-size: 26px;"></i>
           </button>
-          <button type="button" class="btn pb-3 btn-primary">
+          <button type="button" class="btn pb-3 btn-light">
             <i class="bi bi-envelope" style="font-size: 28px;"></i>
           </button>
-          <button type="button" class="btn pb-3 btn-primary">
+          <button type="button" class="btn pb-3 btn-light">
             <i class="bi bi-share" style="font-size: 26px;"></i>
           </button>
         </div>
       </div>
 
-      {% for el in catigories_navbar %}
-        <li class="nav-item px-1 my-1"><a class="nav-link rounded lead navit" href="{{ el.get_absolute_url }}"><b>{{ el.title }}</b></a></li>
-        {% block sub_catigories %}{%endblock%}
-      {% endfor %}
+      <div class="container mt-4 text-center">
+        <div class="btn-group-vertical w-100 rounded socialcard" role="group" aria-label="Basic example">
+        {% for el in catigories_navbar %}
+          <button type="button" class="btn btn-light">
+            <a class="nav-link lead text-dark" href="{{ el.get_absolute_url }}" style="font-size: 18px;"><b>{{ el.title }}</b></a>
+          </button>
+          {% block sub_catigories %}{%endblock%}
+        {% endfor %}
+        <button type="button" class="btn btn-light">
+          <a class="nav-link lead text-dark" href="{% url 'all_furnite' %}" style="font-size: 18px"><b>Фурнитура</b></a>
+        </button>
+        
+        </div>
         <!--<li class="nav-item"><hr></li>-->
-      
-      <li class="nav-item pl-1 navit"><a class="nav-link lead"  aria-current="page" href="{% url 'all_furnite' %}"><b>Фурнитура</b></a></li>
+      </div>  
           
             {% for fu in furnite_navbar %}
             <li class="nav-item lead pl-3 navit"><a class="nav-link"  href="{{ fu.get_absolute_url }}">{{ fu.title }}</a></li>
@@ -98,7 +107,7 @@
 
 
   <style>
-    .navmenu {width: 250px;}
+    .navmenu {width: 260px;}
 
     /* md и выше */
     @media screen and (min-width: 1200px){      #wrapper {padding-left: 250px; padding-top: 6em}   }
