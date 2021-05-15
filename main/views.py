@@ -1,6 +1,7 @@
+from django.contrib.auth import SESSION_KEY
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -78,6 +79,11 @@ def show_post(request, post_slug):      #   door post template / Страниц�
     catalog_post = catalog.objects.all
     catigories_navbar = category.objects.all
     sub_category_navbar = sub_category.objects.all
+
+    session_key = request.session.session_key
+    if not session_key:
+        request.session.cycle_key()
+    print(request.session.session_key)
 
     context = {
         'post' : post,
@@ -267,5 +273,3 @@ def all_furnite(request):
     }
 
     return render(request, 'main/all_furnite.html', context = context)
-
-
