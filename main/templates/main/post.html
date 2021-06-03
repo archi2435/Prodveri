@@ -74,7 +74,7 @@
                   <h4 class="lead" style="font-size: 1.4em;">{{ post.price|intcomma }} ₽</h4>
                 </label>
                 <br>
-                <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mt-2 w-100" data-name="{{post.title}}" data-categoty="{{ post.category }}" data-id = "{{ post.id }}">
+                <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mt-2 w-100" data-name="{{post.title}}" data-categoty="{{ post.category }}" data-id="{{ post.id }}" data-slug="{{ post.slug }}">
                   <h4 class="lead" style="font-size: 1.5em;"><b>Добавить в корзину</b></h4>
                 </button>
               </div>
@@ -95,7 +95,7 @@
                 </label>             
               </div>
               <br>
-                <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mr-5 mt-2 w-100" data-image="{{ post.image.url }}" data-name="{{post.title}}" data-categoty="{{ post.category }}" data-id = "{{ post.id }}">
+                <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mr-5 mt-2 w-100" data-image="{{ post.image.url }}" data-name="{{post.title}}" data-categoty="{{ post.category }}" data-id = "{{ post.id }}" data-slug = "{{ post.slug }}">
                   <h4 class="lead" style="font-size: 1.5em;"><b>Добавить в корзину</b></h4>
                 </button>
             </form>

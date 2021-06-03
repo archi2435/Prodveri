@@ -111,6 +111,11 @@ class Furnite_category(models.Model):       #   furnite categories / катег�
 
     def get_absolute_url(self):
         return reverse("furnite_category", kwargs={"furnite_category_slug": self.slug})
+
+    class Meta:
+        verbose_name = 'Категория фурнитуры'
+        verbose_name_plural = 'Категории фурнитуры'
+
     
     
 
@@ -125,7 +130,11 @@ class Furnite_sub_category(models.Model):       #   furnite sub_category / по�
         return self.title
 
     def get_absolute_url(self):
-        return reverse("furnite_subcategory", kwargs={"furnite_subcategory_slug": self.slug})    
+        return reverse("furnite_subcategory", kwargs={"furnite_subcategory_slug": self.slug})
+
+    class Meta:
+        verbose_name = 'Подкатегория фурнитуры'
+        verbose_name_plural = 'Подкатегории фурнитуры'    
 
 
 
@@ -164,3 +173,21 @@ class News(models.Model):       #   news tab / Новости
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
+
+
+
+class Orders(models.Model):
+
+    Date = models.DateTimeField(verbose_name='Дата заказа', auto_now_add=True)
+    first_name = models.CharField(verbose_name='Имя', max_length=30)
+    Middle_name = models.CharField(verbose_name='Отчество', max_length=30)
+    Phone = models.CharField(verbose_name='Номер телефона', max_length=15)
+    Address = models.TextField(verbose_name='Адрес')
+    Cart = models.TextField(verbose_name='Корзина')
+
+    def __str__(self):
+        return self.Date
+
+    class Meta:
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'
