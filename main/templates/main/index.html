@@ -2,28 +2,29 @@
 {% load static %}
 {% load humanize %}
 
+{% block title %}ProДвери{% endblock %}
 
 {% block content %}
 
-    <!-- first block / первый (приветственный) блок -->
-    <h3 class="pb-4 lead text-center" style="font-size: 2.2em;"><b>Добро пожаловать</b></h3>
-    <div class="row row-cols-1 row-cols-sm-2 pt-2">
-        <div class="col my-3 text-center">
-            <i class="bi bi-door-open" style="font-size: 2em;"></i>
-            <p class="pt-3 lead"><b>prodveri23</b></p>
-            <p class="lead">У нас вы встретите двери и фурнитуру различных видов. Размер ассортимента и доступные цены позволят вам остановится именно в нашем магазине.</p>
-        </div>
-        <div class="col my-3 text-center">
-            <i class="bi bi-geo-alt" style="font-size: 2em;"></i>
-            <p class="pt-4 lead"><b>Наш адрес:</b></p>
-            <p class="lead">г.Краснодар, ул.Российская 400/1</p>
-            
-            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#ShowMap">
-                Показать на карте
-            </button>
-              
-            <!-- Modal -->
-            <div class="modal fade" id="ShowMap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- first block / первый (приветственный) блок -->
+<h3 class="pb-4 lead text-center" style="font-size: 2.2em;"><b>Добро пожаловать</b></h3>
+<div class="row row-cols-1 row-cols-sm-2 pt-2">
+    <div class="col my-3 text-center">
+        <i class="bi bi-door-open" style="font-size: 2em;"></i>
+        <p class="pt-3 lead"><b>prodveri23</b></p>
+        <p class="lead">У нас вы встретите двери и фурнитуру различных видов. Размер ассортимента и доступные цены позволят вам остановится именно в нашем магазине.</p>
+    </div>
+    <div class="col my-3 text-center">
+        <i class="bi bi-geo-alt" style="font-size: 2em;"></i>
+        <p class="pt-4 lead"><b>Наш адрес:</b></p>
+        <p class="lead">г.Краснодар, ул.Российская 400/1</p>
+
+        <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#ShowMap">
+            Показать на карте
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ShowMap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -31,98 +32,98 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        </div>
-                        <div class="modal-body">
-                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa555ca4e064b4ff16acfb2fcc50280eee73be5a09de79f29157cc203934acea8&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Позвонить</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                            
-                        </div>
                     </div>
-                </div>
-            </div>    
-              
-            
-        </div>
-    </div>
-
-
-    <!-- news block / Блок новостей -->
-    <hr>
-    <h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Новости</b></h3>
-    <div class="row row-cols-1 row-cols-sm-2 pb-4">
-    {% for n in news %}
-        <div class="col my-3">
-            <div class="card card-how h-100">
-                <h5 class="card-header lead"><b>{{ n.title }}</b></h5>
-                <div class="card-body">
-                    <p>{{ n.text|linebreaks }}</p>
+                    <div class="modal-body">
+                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa555ca4e064b4ff16acfb2fcc50280eee73be5a09de79f29157cc203934acea8&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Позвонить</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
                 </div>
             </div>
         </div>
-    {% endfor %}
+
     </div>
+</div>
 
 
-    <!-- payment information / информация об оплате -->
-    <hr>
-    <div class="container d-md-flex py-4 text-center">
-        <i class="bi bi-window-sidebar mr-3" style="font-size: 2.3em;"></i>
-        <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного проёма,
-            доставке товара до адреса и монтажным работам</p>
+<!-- news block / Блок новостей -->
+{% if news %}
+<hr>
+<h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Новости</b></h3>
+<div class="row row-cols-1 row-cols-sm-2 pb-4">
+{% for n in news %}
+    <div class="col my-3">
+        <div class="card card-how h-100">
+            <h5 class="card-header lead"><b>{{ n.title }}</b></h5>
+            <div class="card-body">
+                <p>{{ n.text|linebreaks }}</p>
+            </div>
+        </div>
     </div>
+{% endfor %}
+</div>
+{% endif %}
 
 
-    <!-- new door block / блок с новыми дверьми -->
-    <hr class="shadow-lg">
-    <h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Новинки</b></h3>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 pb-4">
-    {% for i in catalog_mainpage %}
-        <div class=" col my-3">
-            <div class="card card-how h-100"> 
-                <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
-                <h5 class="card-header lead text-center"><b>{{ i.title }}</b></h5>
-                <div class="card-body text-center">
-                    
-                    <div class="card__img">
-                        <img src="{{ i.image.url }}" class=" card__img-wrapper">
-                        {% if i.second_image  %}
-                        <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
-                        {% endif %}
-                    </div>
-                    <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price|intcomma }} ₽</b></h5>
+<!-- payment information / информация об оплате -->
+<hr>
+<div class="container d-md-flex py-4 text-center">
+    <i class="bi bi-window-sidebar mr-3" style="font-size: 2.3em;"></i>
+    <p class="lead pt-4 pt-md-0">На сайте вы сможете ознакомится с нашей продукцией, обратиться за помощью при замере дверного проёма,
+        доставке товара до адреса и монтажным работам</p>
+</div>
+
+
+<!-- new door block / блок с новыми дверьми -->
+{% if catalog_mainpage %}
+<hr class="shadow-lg">
+<h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Новинки</b></h3>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 pb-4">
+{% for i in catalog_mainpage %}
+    <div class=" col my-3">
+        <div class="card card-how h-100">
+            <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+            <h5 class="card-header lead text-center"><b>{{ i.title }}</b></h5>
+            <div class="card-body text-center">
+
+                <div class="card__img">
+                    <img src="{{ i.image.url }}" class=" card__img-wrapper">
+                    {% if i.second_image  %}
+                    <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
+                    {% endif %}
+                </div>
+                <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price|intcomma }} ₽</b></h5>
+            </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+
+<!-- new furnite block / блок с новой фурнитурой -->
+{% if furnite_mainpage %}
+<hr>
+<h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Последняя фурнитура</b></h3>
+<div class="row row-cols-2 row-cols-lg-4">
+    {% for fur in furnite_mainpage %}
+        <div class="col my-3 ">
+            <div class="card card-how h-100">
+                <a class="text-decoration-none" href="{{ fur.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+                <h5 class="card-header text-center lead"><b>{{ fur.title }}</b></h5>
+                <div class="card-body text-center ">
+                    <img src="{{ fur.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
+                    <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ fur.text }}</h6>
+                    <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ fur.price|intcomma }} ₽</b></h5>
                 </div>
                 </a>
             </div>
         </div>
     {% endfor %}
-    </div>
-
-
-    <!-- new furnite block / блок с новой фурнитурой -->
-    <hr>
-    <h3 class="py-4 lead text-center" style="font-size: 2em;"><b>Последняя фурнитура</b></h3>
-    <div class="row row-cols-2 row-cols-lg-4">
-        {% for fur in furnite_mainpage %}
-            <div class="col my-3 ">
-                <div class="card card-how h-100">
-                    <a class="text-decoration-none" href="{{ fur.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
-                    <h5 class="card-header text-center lead"><b>{{ fur.title }}</b></h5>
-                    <div class="card-body text-center ">
-                        <img src="{{ fur.image.url }}" class="card-img-top pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
-                        <h6 class="card-subtitle text-muted my-1  d-none d-sm-block">{{ fur.text }}</h6>
-                        <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ fur.price|intcomma }} ₽</b></h5>
-                    </div>
-                    </a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
-
-    <!-- footer -->
+</div>
+{% endif %}
     
 {% endblock %}
 

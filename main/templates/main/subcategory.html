@@ -2,67 +2,34 @@
 {% load static %}
 {% load humanize %}
 
+{% block title %}{{ subcategory.title }}{% endblock %}
+
 {% block sub_catigories %}
-
-    {% for es in sub_category_navbar %}
-        {% if el.id == es.category_id %}
-            {% if el.id == subcategory.category_id %}
-            <button type="button" class="btn btn-light text-left">
-                <a class="nav-link lead text-dark" href="{{ es.get_absolute_url }}" style="font-size: 18px;"><i class="bi bi-filter-right" style="font-size: 22px;"></i><b>{{ es.title }}</b></a>
-            </button>
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-
+{% for es in sub_category_navbar %}
+    {% if el.id == subcategory.category_id %}
+    <button type="button" class="btn btn-light text-left">
+        <a class="nav-link lead text-dark" href="{{ es.get_absolute_url }}" style="font-size: 18px;"><i class="bi bi-filter-right" style="font-size: 22px;"></i><b>{{ es.title }}</b></a>
+    </button>
+    {% endif %}
+{% endfor %}
 {% endblock %}
 
 {% block content %}
 
-    <!-- nav block / блок навигации -->
-    <nav aria-label="breadcrumb" class="bg-light mb-5 card-how-low rounded">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
-        <li class="breadcrumb-item" aria-current="page"><a href="{{ subcategory.category.get_absolute_url }}">{{ subcategory.category.title }}</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ subcategory.title }}</li>
-    </ol>
-    </nav>
+<!-- nav block / блок навигации -->
+<nav aria-label="breadcrumb" class="bg-light mb-5 card-how-low rounded">
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+    <li class="breadcrumb-item" aria-current="page"><a href="{{ subcategory.category.get_absolute_url }}">{{ subcategory.category.title }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ subcategory.title }}</li>
+</ol>
+</nav>
 
 
-    <h5 class="lead text-center pb-5" style="font-size: 2em;">{{ subcategory.title }}</h5>
+<h5 class="lead text-center pb-5" style="font-size: 2em;">{{ subcategory.title }}</h5>
 
-    <nav class="nav nav-pills justify-content-center pb-3">
-        {% for es in collections %}
-        {% if es.sub_category_id == subcategory.id %}
-            <li class="nav-item border rounded card-how-low px-2 m-1">
-                <a class="nav-link text-pimary lead" aria-current="page" href="{{ es.get_absolute_url }}"><b>{{ es.title }}</b></a>
-            </li>
-        {% endif %}
-        {% endfor %}
-    </nav>
-    
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 pb-4">
-        {% for i in page_obj %}
-        
-            <div class="col my-3 ">
-                <div class="card card-how h-100">
-                    <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
-                    <h5 class="card-header text-center lead"><b>{{ i.title }}</b></h5>
-                    <div class="card-body text-center ">
-                        <div class="card__img">
-                            <img src="{{ i.image.url }}" class=" card__img-wrapper">
-                            {% if i.second_image %}
-                            <img src="{{ i.second_image.url }}" class=" card__img-wrapper">
-                            {% endif %}
-                        </div>                       
-                        <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price|intcomma }} ₽</b></h5>
-                    </div>
-                    </a>
-                </div>
-            </div>
-        
-        {% endfor %}
-    </div>
+{% include "main/nav_pills.html"%}
 
-    {% include "main/pagination.html"%}
-
+{% include "main/door_list.html"%}
+{% include "main/pagination.html"%}
 {% endblock content %}

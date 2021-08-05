@@ -27,7 +27,7 @@ SECRET_KEY = '#m53nr9iumq7orf@maupmf#mk_rf+@gwacbcr)#-nj#=iarmp='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'prodveri23.ru', 'www.prodveri23.ru']
 
 
 # Application definition

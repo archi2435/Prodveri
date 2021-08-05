@@ -2,79 +2,85 @@
 {% load static %}
 {% load humanize %}
 
+{% block title %}{{ post.title }}{% endblock %}
+
+
 {% block content %}
 <nav aria-label="breadcrumb" class="bg-light mb-4 card-how-low  rounded">
+    <!-- Навигационная панель -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
       <li class="breadcrumb-item"><a href="{% url 'all_furnite' %}">Фурнитура</a></li>
-      <li class="breadcrumb-item"><a href="{{ furnite.Furnite_category.get_absolut_url }}">{{ furnite.category }}</a></li>
-      <li class="breadcrumb-item"><a href="{{furnite.Furnite_sub_category.get_absolute_url}}">{{ furnite.sub_category }}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{ furnite.title }}</li>
+      <li class="breadcrumb-item"><a href="{{ post.Furnite_category.get_absolut_url }}">{{ post.category }}</a></li>
+      <li class="breadcrumb-item"><a href="{{ post.Furnite_sub_category.get_absolute_url}}">{{ post.sub_category }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
     </ol>
 </nav>
 
 <hr>
 
-
 <div class="card mt-4 bg-light card-how mb-4">
+<!-- Карта товара -->
   <div class="row">
+
     <div class="col-md-4 text-center pt-5">
-      <img src="{{ furnite.image.url }}" alt="..." style="width: 250px;">
+      <img src="{{ post.image.url }}" alt="..." style="width: 250px;">
     </div>
+
     <div class="col-md-8">
       <div class="container">
         <div class="card-body">
-          <h5 class="ml-2 ml-md-0 card-title display-4">{{ furnite.title }}</h5>
-          <h6 class="ml-2 ml-md-0 lead text-muted">Артикул: <b>{{ furnite.slug }}</b></h6>
+          <h5 class="ml-2 ml-md-0 card-title display-4">{{ post.title }}</h5>
+          <h6 class="ml-2 ml-md-0 lead text-muted">Артикул: <b>{{ post.slug }}</b></h6>
 
           <form id="BuyForm">
+          <!-- Форма покупки -->
           <div class="pt-3 mt-3 ">
-            <input type="checkbox" class="btn-check" name="oplata" id="option1" autocomplete="on" value="{{ furnite.price }}" checked >
+            <input type="checkbox" class="btn-check" name="oplata" id="option1" autocomplete="on" value="{{ post.price }}" checked >
             <label for="option1" type="button" class="btn btn-lg btn-outline-primary mt-sm-5 mb-3 disabled w-100">
               <h4 class="lead" style="font-size: 1.5em;">Стоимость</h4>
-              <h4 class="lead" style="font-size: 1.4em;">{{ furnite.price|intcomma }} ₽</h4>
+              <h4 class="lead" style="font-size: 1.4em;">{{ post.price|intcomma }} ₽</h4>
             </label>
             <br>
-            <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mt-2 w-100" data-name="{{furnite.title}}" data-categoty="{{ furnite.sub_category }}" data-id = "{{ furnite.id }}" data-price="{{ furnite.price }}">
+            <button id="buy-btn" type="submit" class="btn btn-warning btn-lg mt-2 w-100" data-name="{{post.title}}" data-categoty="{{ post.sub_category }}" data-id = "{{ post.id }}" data-price="{{ post.price }}" data-slug = "{{ post.slug }}" data-type="furnite">
               <h4 class="lead" style="font-size: 1.5em;"><b>Добавить в корзину</b></h4>
             </button>
           </div>
           </form>
+
         </div>
       </div>       
     </div>
+
   </div>
+
   <div class="card-body mx-4 mt-3">
-  <hr>
-    <p class="card-text">{{ furnite.dist|linebreaks }}</p>
+  <!-- Описание товара -->
+    <hr>
+    <p class="card-text">{{ post.dist|linebreaks }}</p>
   </div>
     
 </div>
 
-
 <hr>
-<h3 class="py-3 lead text-center" style="font-size: 2em;"><b>Категория "{{ furnite.sub_category }}"</b></h3>
+
+<h3 class="py-3 lead text-center" style="font-size: 2em;"><b>Категория "{{ post.sub_category }}"</b></h3>
+
 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
   {% for i in furnite_post %}
-    {% if i.sub_category == furnite.sub_category %}
-
-      <div class="col my-3 ">
-          <div class="card card-how h-100">
-              <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
+  <div class="col my-3 ">
+      <div class="card card-how h-100">
+          <a class="text-decoration-none" href="{{ i.get_absolute_url }}" data-bs-toggle="modal" style="color: black">
               <h5 class="card-header text-center lead"><b>{{ i.title }}</b></h5>
               <div class="card-body text-center ">
                   <img src="{{ i.image.url }}" class="card-img-top  pl-sm-5 pr-sm-5 pl-md-3 pr-md-3">
                   <h6 class="card-subtitle text-muted my-1">{{ i.text }}</h6>
                   <h5 class="pl-2 card-title pt-4 lead text-center" style="font-size: 1.5em;"><b>{{ i.price|intcomma }} ₽</b></h5>
               </div>
-              </a>
-          </div>
+          </a>
       </div>
-    {% endif %}
+  </div>
   {% endfor %}
 </div>
-    
-
-
 
 {% endblock content %}
